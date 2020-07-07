@@ -1,0 +1,17 @@
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/service/PlayerService.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/service/SignatureService.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/repository/GeolocalisationRepository.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/controler/PlayerController.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/repository/SettingRepository.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/repository/PlayerRepository.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/controler/GameController.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/repository/SignatureRepository.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/entity/SignatureEntity.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/entity/GeolocalisationEntity.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/BridgeQuestApplication.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/repository/GameRepository.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/entity/GameEntity.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/entity/Role.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/entity/SettingEntity.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/entity/PlayerEntity.java
+/home/pbernier/Bureau/BridgeQuestApi/src/main/java/LaFalaise/BridgeQuest/service/GameService.java
