@@ -13,6 +13,7 @@ public class PlayerEntity {
     private String pseudo;
     private Integer points = 0;
     private Role role = Role.HUMAIN;
+    private Boolean visible = true;
     @OneToOne
     private GeolocalisationEntity geolocalisation;
     @OneToMany
@@ -43,7 +44,10 @@ public class PlayerEntity {
     }
 
     public Role getRole() { return role; }
-    public void setRole(Role role) {this.role = role; }
+    public void setRole(Role role) { this.role = role; }
+
+    public Boolean getVisible() { return visible; }
+    public void setVisible(Boolean visible) { this.visible = visible; }
 
     public GeolocalisationEntity getGeolocalisation() { return geolocalisation; }
     public void setGeolocalisation(GeolocalisationEntity geolocalisation) {
@@ -82,6 +86,7 @@ public class PlayerEntity {
                 ", pseudo='" + pseudo + '\'' +
                 ", points=" + points +
                 ", role=" + role +
+                ", visible=" + visible +
                 ", geolocalisation=" + geolocalisation +
                 ", signatures=" + signatures +
                 '}';

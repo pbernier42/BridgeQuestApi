@@ -92,6 +92,15 @@ public class GameController {
         return this.gameRepository.save(gameEntity.get());
     }
 
+    @PutMapping("/game/{gameId}/player/{playerId}/visible")
+    public PlayerEntity switchPlayerVisible(@PathVariable Integer gameId, @PathVariable Integer playerId) {
+        Optional<GameEntity> gameEntity = this.gameRepository.findById(gameId);
+        PlayerEntity player = gameEntity.get().getPlayerById(playerId);
+        player.setVisible(player.getVisible() ? false : true);
+        return this.playerRepository.save(player);
+    }
+
+
     //a changer
     @PutMapping("/game/{gameId}/player/{playerId}/geolocalisation")
     public PlayerEntity updateGeolocalisation(@PathVariable Integer gameId, @PathVariable Integer playerId,
@@ -103,7 +112,7 @@ public class GameController {
         player.getGeolocalisation().setLatitude(geolocalisation.getLatitude());
         player.getGeolocalisation().setLongitude(geolocalisation.getLongitude());
         //player.setGeolocalisation(geolocalisation);
-        System.out.println(player.toString());
+        //System.out.println(player.toString());
         return this.playerRepository.save(player);
     }
 
