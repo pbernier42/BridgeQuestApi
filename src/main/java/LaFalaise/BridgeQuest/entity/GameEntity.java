@@ -116,7 +116,10 @@ public class GameEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", ongoing=" + ongoing +
-                ", players=" + players +
+                ", timeLeft=" + timeLeft +
+                ", dateStart='" + dateStart + '\'' +
+                ", setting=" + setting +
+
                 '}';
     }
 }

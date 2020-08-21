@@ -27,4 +27,6 @@ public class GameService {
         gameEntity.setSetting(this.settingRepository.save(settingEntity));
         return this.gameRepository.save(gameEntity);
     }
+
+
 }
