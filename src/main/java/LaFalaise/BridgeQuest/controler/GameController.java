@@ -113,7 +113,7 @@ public class GameController {
         player.getGeolocalisation().setLatitude(geolocalisation.getLatitude());
         player.getGeolocalisation().setLongitude(geolocalisation.getLongitude());
         //player.setGeolocalisation(geolocalisation);
-        //System.out.println(player.toString());
+        System.out.println(player.getPseudo() + " = " + player.getGeolocalisation().getLatitude() + " - " + player.getGeolocalisation().getLongitude());
         return this.playerRepository.save(player);
     }
 
@@ -160,7 +160,8 @@ public class GameController {
             playerEntity.setPoints(playerEntity.getPoints() + savedSignature.getPoints());
             this.playerRepository.save(playerEntity);
             playerScanned.setRole(Role.ESPRIT);
-            return this.playerRepository.save(playerEntity);
+            playerRepository.save(playerScanned);
+            return playerEntity;
         }
         return null;
 
@@ -206,10 +207,11 @@ public class GameController {
 
             SignatureEntity savedSignature = this.signatureRepository.save(signatureEntity);
             playerEntity.addSignature(savedSignature);
+            System.out.println(playerEntity.getPoints() + " + " + savedSignature.getPoints());
             playerEntity.setPoints(playerEntity.getPoints() + savedSignature.getPoints());
             this.playerRepository.save(playerEntity);
             playerScanned.setRole(Role.ESPRIT);
-            this.playerRepository.save(playerEntity);
+            this.playerRepository.save(playerScanned);
         }
 
         return distance;
@@ -223,7 +225,7 @@ public class GameController {
         System.out.println(gameEntity.get().getPlayers());
 
         this.taskExecutor.execute(new EndGameTaskExecutor(
-                gameId, gameEntity.get().getSetting().getDurationGame(), this.gameRepository));
+                gameId, gameEntity.get().getSetting().getDurationGame(), this.gameRepository, this.playerRepository, this.signatureRepository));
         this.taskExecutor.execute(new RoleDeploymentTask(
                 gameId, gameEntity.get().getSetting().getDeploymentTime(), this.gameRepository, this.playerRepository));
         this.taskExecutor.execute(new RegularHumanPointsTask(
