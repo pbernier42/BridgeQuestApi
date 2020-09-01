@@ -27,7 +27,7 @@ public class RegularHumanPointsTask implements Runnable {
 
             Boolean onGoing = true;
             while (onGoing) {
-                Thread.sleep((1000 * 60));
+                Thread.sleep(1000 * 60);
                 Optional<GameEntity> gameEntity = this.gameRepository.findById(gameId);
                 onGoing = gameEntity.get().getOngoing();
                 if (!onGoing) {

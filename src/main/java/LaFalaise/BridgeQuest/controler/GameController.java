@@ -45,6 +45,7 @@ public class GameController {
         return gameEntity.get();
     }
 
+    @CrossOrigin
     @GetMapping("/game/{gameId}/players")
     public List<PlayerEntity> getPlayers(@PathVariable Integer gameId) {
         Optional<GameEntity> gameEntity = this.gameRepository.findById(gameId);
@@ -103,7 +104,7 @@ public class GameController {
 
 
     //a changer
-    @PutMapping("/game/{gameId}/player/{playerId}/geolocalisation")
+    @PutMapping("/game//{playerId}/geolocalisation")
     public PlayerEntity updateGeolocalisation(@PathVariable Integer gameId, @PathVariable Integer playerId,
                                               @RequestBody GeolocalisationEntity geolocalisation) {
 
@@ -128,7 +129,17 @@ public class GameController {
         //System.out.println(scannedPlayerInfo.toString());
         //a transporter des le service () !
         //Separation of concerns
-        if (!Objects.equals(playerScanned.getPseudo(), scannedPlayerInfo.getPseudo())) {
+
+        Boolean SpiritUp = false;
+        List<PlayerEntity> playerEntities = gameEntity.get().getPlayers();
+        for (PlayerEntity player : playerEntities) {
+            if (player.getRole() == Role.ESPRIT) {
+                SpiritUp = true;
+            }
+        }
+
+
+        if (!SpiritUp || !Objects.equals(playerScanned.getPseudo(), scannedPlayerInfo.getPseudo())) {
             //System.out.println("Null");
             return null;
         }
