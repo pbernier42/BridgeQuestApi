@@ -19,6 +19,7 @@ public class PlayerService {
 
 
     public PlayerEntity createPlayer(PlayerEntity playerEntity){
+        //System.out.println(playerEntity);
         GeolocalisationEntity geolocalisationEntity;
         if (playerEntity.getGeolocalisation() != null) {
             geolocalisationEntity = playerEntity.getGeolocalisation();

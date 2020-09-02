@@ -104,7 +104,7 @@ public class GameController {
 
 
     //a changer
-    @PutMapping("/game//{playerId}/geolocalisation")
+    @PutMapping("/game/{gameId}/player/{playerId}/geolocalisation")
     public PlayerEntity updateGeolocalisation(@PathVariable Integer gameId, @PathVariable Integer playerId,
                                               @RequestBody GeolocalisationEntity geolocalisation) {
 
@@ -135,9 +135,9 @@ public class GameController {
         for (PlayerEntity player : playerEntities) {
             if (player.getRole() == Role.ESPRIT) {
                 SpiritUp = true;
+                break;
             }
         }
-
 
         if (!SpiritUp || !Objects.equals(playerScanned.getPseudo(), scannedPlayerInfo.getPseudo())) {
             //System.out.println("Null");
@@ -149,6 +149,12 @@ public class GameController {
         if (playerScanned.getRole() == Role.HUMAIN & playerEntity.getRole() == Role.HUMAIN) {
 
             SignatureEntity signatureEntity = signatureService.createSignature(playerScanned, gameEntity.get().getSetting().getHumanSignature());
+            for (SignatureEntity playerSignature : playerEntity.getSignatures()) {
+                if (playerSignature.getPseudo() == signatureEntity.getPseudo()) {
+                    return null;
+                }
+            }
+
             SignatureEntity savedSignature = this.signatureRepository.save(signatureEntity);
             playerEntity.addSignature(savedSignature);
             playerEntity.setPoints(playerEntity.getPoints() + savedSignature.getPoints());
@@ -244,5 +250,19 @@ public class GameController {
 
         GameEntity savedGameEntity = this.gameRepository.save(gameEntity.get());
         return savedGameEntity;
+    }
+
+    //@DeleteMapping("/game/{gameId}/player/{playerId}")
+    //public void deletePlayer(@PathVariable Integer gameId, @PathVariable Integer playerId) {
+     //   this.playerRepository.deleteById(playerId);
+    //}
+
+    //TEMPORAIRE
+    @PutMapping("/game/{gameId}/player/{playerId}/puppet/{puppetId}")
+    public PlayerEntity transfomPlayerPuppet(@PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer puppetId) {
+        Optional<GameEntity> gameEntity = this.gameRepository.findById(gameId);
+        PlayerEntity player = gameEntity.get().getPlayerById(playerId);
+        player.setId(puppetId);
+        return this.playerRepository.save(player);
     }
 }

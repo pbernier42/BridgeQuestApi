@@ -44,9 +44,12 @@ public class RoleDeploymentTask implements Runnable{
                 if (playerEntities.get(index).getRole() == Role.HUMAIN) {
                     playerEntities.get(index).setRole(Role.ESPRIT);
                     spiritNumber = spiritNumber - 1;
-                    this.playerRepository.save(playerEntities.get(index));
+                    while (this.playerRepository.findById(playerEntities.get(index).getId()).get().getRole()  == Role.HUMAIN) {
+                        this.playerRepository.save(playerEntities.get(index));
+                        System.out.println("Spirit " + playerEntities.get(index).getPseudo());
+                    }
                 }
-                System.out.println("Spirit " + playerEntities.get(index).getPseudo());
+
             }
             System.out.println(playerEntities.toString());
             //for (PlayerEntity player : playerEntities) {

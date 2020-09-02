@@ -40,7 +40,9 @@ public class EndGameTaskExecutor implements Runnable{
             Boolean humanWon = false;
             for (PlayerEntity player : playerEntities) {
                 if (player.getRole() == Role.HUMAIN) {
+                    System.out.println("[" + player.getPseudo() + "] had : " + player.getPoints());
                     player.setPoints(player.getPoints() + 100);
+                    System.out.println("[" + player.getPseudo() + "] has now : " + player.getPoints() + "\n");
                     this.playerRepository.save(player);
                     humanWon = true;
                 }
@@ -58,7 +60,10 @@ public class EndGameTaskExecutor implements Runnable{
                 while (index < humanLeftBonus) {
                     for (PlayerEntity player : playerEntities) {
                         if (player.getPseudo() == allSignatures.get(allSignatures.size() - 1 - humanLeftBonus + index).getPseudo()) {
+                            System.out.println("[" + player.getPseudo() + "] had : " + player.getPoints());
                             player.setPoints(player.getPoints() + (100 / (humanLeftBonus - index)));
+                            System.out.println("[" + player.getPseudo() + "] has now : " + player.getPoints() + "\n");
+                            this.playerRepository.save(player);
                         }
                     }
                     ++index;
