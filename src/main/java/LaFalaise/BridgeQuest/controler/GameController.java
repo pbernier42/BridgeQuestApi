@@ -256,5 +256,5 @@ public class GameController {
     //public void deletePlayer(@PathVariable Integer gameId, @PathVariable Integer playerId) {
      //   this.playerRepository.deleteById(playerId);
     //}
-    
+
 }
