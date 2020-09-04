@@ -256,13 +256,5 @@ public class GameController {
     //public void deletePlayer(@PathVariable Integer gameId, @PathVariable Integer playerId) {
      //   this.playerRepository.deleteById(playerId);
     //}
-
-    //TEMPORAIRE
-    @PutMapping("/game/{gameId}/player/{playerId}/puppet/{puppetId}")
-    public PlayerEntity transfomPlayerPuppet(@PathVariable Integer gameId, @PathVariable Integer playerId, @PathVariable Integer puppetId) {
-        Optional<GameEntity> gameEntity = this.gameRepository.findById(gameId);
-        PlayerEntity player = gameEntity.get().getPlayerById(playerId);
-        player.setId(puppetId);
-        return this.playerRepository.save(player);
-    }
+    
 }
